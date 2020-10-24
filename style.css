@@ -23,3 +23,7 @@ header p {
     padding: 10px;
     font-size: 35px;
 }
+
+#start-button:hover {
+    opacity: 75%;
+}
