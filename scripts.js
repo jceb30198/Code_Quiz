@@ -1,5 +1,16 @@
+// Variables
+var timer = document.querySelector("#timer");
+var questBox = document.querySelector("#question-box");
+var ansChoiceDiv = document.querySelector("#answer-choice");
+var startBtn = document.querySelector("#start-button");
+var timerSec = 75;
+var score = 0;
+var answerList = document.createElement("ul");
+
+console.log(ansChoiceDiv); // Test
+
 // List of questions
-var questionArr = [
+var questionsArr = [
     {
         question: "What does HTML stand for?",
         answerChoices: ["Hype Tool Making Language", "How To Make Language", "Hyper Text Markup Language", "Home Text Marker Language"],
@@ -26,3 +37,32 @@ var questionArr = [
         answer: "Methods",
     }
 ];
+
+console.log(questionsArr[3].answerChoices[2]); // Test
+
+
+// Even listener for start button
+
+startBtn.addEventListener("click", function() {
+    
+    startBtn.style.display = "none"
+    
+    setInterval(function() {
+        if(timerSec == 0) {
+            clearInterval();
+            timer.textContent = "Time is over."
+        }
+        else {
+            timerSec --;
+            timer.textContent = "Time: " + timerSec;
+        }
+    }, 1000);
+    
+    console.log(timerSec);
+});
+
+// Function to bring in questions
+
+function nextQuestAns() {
+    
+}
