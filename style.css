@@ -1,0 +1,25 @@
+body {
+    background-color: goldenrod;
+}
+
+header p {
+    font-size: 30px;
+    color: blue;
+}
+
+#container {
+    border: 5px solid yellowgreen;
+    background-color: bisque;
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 35%;
+    width: 500px;
+    height: 300px;
+}
+
+#start-button {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    font-size: 35px;
+}
