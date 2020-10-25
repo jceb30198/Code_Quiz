@@ -2,9 +2,20 @@ body {
     background-color: goldenrod;
 }
 
-header p {
+header p{
     font-size: 30px;
     color: blue;
+}
+
+button {
+    background-color: green;
+    color: white;
+    padding: 5px;
+}
+
+p {
+    text-align: left;
+    margin-left: 50px;
 }
 
 #container {
@@ -26,4 +37,9 @@ header p {
 
 #start-button:hover {
     opacity: 75%;
+}
+
+#question-box {
+    margin-top: 50px;
+    font-size: x-large;
 }

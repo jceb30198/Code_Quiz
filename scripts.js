@@ -5,7 +5,6 @@ var ansChoiceDiv = document.querySelector("#answer-choice");
 var startBtn = document.querySelector("#start-button");
 var timerSec = 75;
 var score = 0;
-var answerList = document.createElement("ul");
 
 console.log(ansChoiceDiv); // Test
 
@@ -40,9 +39,7 @@ var questionsArr = [
 
 console.log(questionsArr[3].answerChoices[2]); // Test
 
-
 // Even listener for start button
-
 startBtn.addEventListener("click", function() {
     
     startBtn.style.display = "none"
@@ -59,10 +56,29 @@ startBtn.addEventListener("click", function() {
     }, 1000);
     
     console.log(timerSec);
+    nextQuestAns();
 });
 
-// Function to bring in questions
 
+// Function to bring in questions and answer choices.
 function nextQuestAns() {
+
+    // Loop for questions
+    for(var i = 0; i < questionsArr.length; i++) {
+        questBox.textContent = questionsArr[i].question;
+        var ansText = questionsArr[i].answerChoices;
+        
+        console.log(questionsArr[i].question); // Test
+        console.log(questionsArr[i].answerChoices); //Test
+    }
+    
+    // Loop to create buttons for answer choices for each question
+    ansText.forEach(function (button) {
+        var p = document.createElement("p");
+        var btnEl = document.createElement("button");
+        btnEl.textContent = button;
+        ansChoiceDiv.appendChild(p);
+        p.appendChild(btnEl);
+    })
     
 }
