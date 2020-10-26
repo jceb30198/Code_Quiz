@@ -4,7 +4,8 @@ var questBox = document.querySelector("#question-box");
 var ansChoiceDiv = document.querySelector("#answer-choice");
 var startBtn = document.querySelector("#start-button");
 var timerSec = 75;
-var score = 0;
+var questionI = 0
+var score = 5;
 
 console.log(ansChoiceDiv); // Test
 
@@ -56,29 +57,55 @@ startBtn.addEventListener("click", function() {
     }, 1000);
     
     console.log(timerSec);
-    nextQuestAns();
+    startQuestion(questionI);
 });
 
-
 // Function to bring in questions and answer choices.
-function nextQuestAns() {
-
+function startQuestion(questionI) {
+    
     // Loop for questions
     for(var i = 0; i < questionsArr.length; i++) {
-        questBox.textContent = questionsArr[i].question;
-        var ansText = questionsArr[i].answerChoices;
+        questBox.textContent = questionsArr[questionI].question;
+        var ansText = questionsArr[questionI].answerChoices;
         
         console.log(questionsArr[i].question); // Test
-        console.log(questionsArr[i].answerChoices); //Test
     }
     
+    // Clears the innerHTML so that it does not stack elements.
+    ansChoiceDiv.innerHTML = "";
+
     // Loop to create buttons for answer choices for each question
     ansText.forEach(function (button) {
-        var p = document.createElement("p");
         var btnEl = document.createElement("button");
+        var p = document.createElement("p");
         btnEl.textContent = button;
         ansChoiceDiv.appendChild(p);
         p.appendChild(btnEl);
+        btnEl.addEventListener("click", (correct));
     })
+}
+
+function correct(btnEl) {
     
+    
+    // Determine if the answer is correct or not
+    if (btnEl.target.textContent == questionsArr[questionI].answer) {
+        console.log("Correct");
+    }
+    else {
+        timerSec = timerSec - 5;
+        score--;
+        console.log(score);
+        alert("Wrong");
+    }
+
+    // Goes to next question
+    questionI++;
+    
+    if(questionI == questionsArr.length) {
+        console.log("Done");
+    }
+    else {
+        startQuestion(questionI);
+    }    
 }
