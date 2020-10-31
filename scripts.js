@@ -5,7 +5,7 @@ var ansChoiceDiv = document.querySelector("#answer-choice");
 var startBtn = document.querySelector("#start-button");
 var timerSec = 75;
 var questionI = 0
-var score = 5;
+var score = 0;
 
 console.log(ansChoiceDiv); // Test
 
@@ -48,7 +48,7 @@ startBtn.addEventListener("click", function() {
     setInterval(function() {
         if(timerSec == 0) {
             clearInterval();
-            timer.textContent = "Time is over."
+            end();
         }
         else {
             timerSec --;
@@ -91,10 +91,10 @@ function correct(btnEl) {
     // Determine if the answer is correct or not
     if (btnEl.target.textContent == questionsArr[questionI].answer) {
         console.log("Correct");
+        score++;
     }
     else {
         timerSec = timerSec - 5;
-        score--;
         console.log(score);
         alert("Wrong");
     }
@@ -102,10 +102,30 @@ function correct(btnEl) {
     // Goes to next question
     questionI++;
     
+    // Goes onto the final display function
     if(questionI == questionsArr.length) {
+        
+        end();
         console.log("Done");
     }
     else {
         startQuestion(questionI);
     }    
+}
+
+// Once all the questions are answered or time is up then this function goes to work
+function end() {
+    var congrats = document.createElement("h1");
+    var finalScore = document.createElement("h4");
+
+    // All displays go blank when the test is finished
+    questBox.innerHTML = ""
+    ansChoiceDiv.innerHTML = ""
+    timer.style.display = "none"
+    congrats.textContent = "The Quiz is Over.";
+    finalScore.textContent = "You scored " + score + "/" + "5";
+
+    // The variables create new elements and show the final container with the score
+    questBox.append(congrats);
+    questBox.append(finalScore)
 }
