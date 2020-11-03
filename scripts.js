@@ -117,15 +117,43 @@ function correct(btnEl) {
 function end() {
     var congrats = document.createElement("h1");
     var finalScore = document.createElement("h4");
+    var input = document.createElement("input");
+    var submit = document.createElement("button");
 
     // All displays go blank when the test is finished
-    questBox.innerHTML = ""
-    ansChoiceDiv.innerHTML = ""
-    timer.style.display = "none"
+    questBox.innerHTML = "";
+    ansChoiceDiv.innerHTML = "";
+    timer.style.display = "none";
+    input.setAttribute("type", "text");
+    submit.setAttribute("id", "submit");
+    submit.textContent = "Submit Name";
     congrats.textContent = "The Quiz is Over.";
     finalScore.textContent = "You scored " + score + "/" + "5";
 
     // The variables create new elements and show the final container with the score
     questBox.append(congrats);
-    questBox.append(finalScore)
+    questBox.append(finalScore);
+    questBox.append(input);
+    questBox.append(submit);
+
+    // Submits the form above
+    submit.addEventListener("click", function() {
+        var name = input.value
+        
+        if(name === "") {
+        alert("Please input your name.");
+        }
+        else {
+            localStorage.setItem(name, score)
+            console.log(name, score);
+            window.location.replace("highscore.html");
+
+            var pScore = document.createElement("p");
+       
+            for(var i = 0; i < name.length; i++) {
+            pScore.textContent = name + ": " + score;
+            document.querySelector(".score-table").append(pScore);
+            }
+        }
+    })
 }
