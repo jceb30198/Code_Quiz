@@ -38,12 +38,10 @@ var questionsArr = [
     }
 ];
 
-console.log(questionsArr[3].answerChoices[2]); // Test
-
 // Even listener for start button
 startBtn.addEventListener("click", function() {
     
-    startBtn.style.display = "none"
+    startBtn.style.display = "none";
     
     setInterval(function() {
         if(timerSec == 0) {
@@ -144,16 +142,17 @@ function end() {
         alert("Please input your name.");
         }
         else {
-            localStorage.setItem(name, score)
-            console.log(name, score);
-            window.location.replace("highscore.html");
-
-            var pScore = document.createElement("p");
-       
-            for(var i = 0; i < name.length; i++) {
-            pScore.textContent = name + ": " + score;
-            document.querySelector(".score-table").append(pScore);
+            var ansArr = [];
+            var ansObj = {
+                name: name,
+                score: score
             }
+            ansArr.push(ansObj);
+            var strArr = JSON.stringify(ansArr);
+
+
+            localStorage.setItem("highscore", strArr);
+            window.location.replace("highscore.html");
         }
     })
 }
